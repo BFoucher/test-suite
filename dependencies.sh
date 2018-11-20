@@ -4,14 +4,12 @@
 # http://stackoverflow.com/questions/6348902/how-can-i-add-numbers-in-a-bash-script/6348945#6348945
 sum=0
 
-echo "memory_limit = 2048M" > /opt/circleci/php/$(phpenv global)/etc/conf.d/memory.ini
-sum=$(( $sum + $? ))
-echo "always_populate_raw_post_data=-1" > /opt/circleci/php/$(phpenv global)/etc/conf.d/post_data.ini
-if [ -n "${RUN_NIGHTLY_BUILD}" ]; then
-  sed -i 's/^;//' /opt/circleci/php/$(phpenv global)/etc/conf.d/xdebug.ini
-  sum=$(( $sum + $? ))
-  echo "xdebug enabled"
-fi
+#echo "always_populate_raw_post_data=-1" > /opt/circleci/php/$(phpenv global)/etc/conf.d/post_data.ini
+#if [ -n "${RUN_NIGHTLY_BUILD}" ]; then
+#  sed -i 's/^;//' /opt/circleci/php/$(phpenv global)/etc/conf.d/xdebug.ini
+#  sum=$(( $sum + $? ))
+#  echo "xdebug enabled"
+#fi
 
 if [[ $1 != *"victoire/victoire"* ]]; then
     php -d memory_limit=-1 /usr/local/bin/composer install --prefer-source
